@@ -1,10 +1,16 @@
 import { useEffect, useState } from 'react';
+import { getAllStarships } from '../../services/api-calls';
+import { Link } from 'react-router-dom';
 
 const Starships = () => {
   const [starships, setStarships] = useState([])
 
   useEffect(()=> {
-    console.log('Component mounted!')
+    const fetchStarships = async () => {
+      const starshipData = await getAllStarships()
+      setStarships(starshipData.results)
+    }
+    fetchStarships()
   }, [])
 
   return (
@@ -13,8 +19,8 @@ const Starships = () => {
       {starships.length ?
         <>
           {starships.map(starship =>
-            <div key={starship.index}>
-              {starship.name}
+            <div key={starship.name}>
+              <Link to="/starship" state={{starship}}>{starship.name}</Link> 
             </div>
           )}
         </>
