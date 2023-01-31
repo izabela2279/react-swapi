@@ -10,7 +10,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/starships" element={<Starships />} />
-        <Route path="/starship" element={<StarshipDetails />} />
+        <Route path="/starships/:id" element={<StarshipDetails />} />
       </Routes>
     </>
   );
